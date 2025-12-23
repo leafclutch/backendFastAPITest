@@ -1,18 +1,4 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from mangum import Mangum
-
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-@app.get("/")
-def root():
-    return {"status": "Backend running successfully"}
-
-handler = Mangum(app)
+@app.get("/print-name/{name}")
+def print_name(name: str):
+    print(f"User name is: {name}")
+    return {"name": name}
